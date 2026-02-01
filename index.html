@@ -8,10 +8,15 @@
   <!-- 検索避け -->
   <meta name="robots" content="noindex,nofollow" />
 
-  <!-- OGP（SNSで貼った時の見え方） -->
+  <!-- OGP -->
   <meta property="og:title" content="MEMBER｜審査制ファンクラブ基盤" />
   <meta property="og:description" content="インフルエンサー・クリエイター向けの審査制会員サービス。限定コンテンツやコミュニティ提供のための基盤です。" />
   <meta property="og:type" content="website" />
+
+  <!-- ちょい高級感フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -23,11 +28,12 @@
       --accent:#7c5cff;
       --accent2:#29d3ff;
       --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius:18px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
                    Roboto, "Helvetica Neue", Arial, "Noto Sans JP",
                    "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
       background:
@@ -36,10 +42,11 @@
         var(--bg);
       color:var(--text);
       line-height:1.7;
+      overflow-x:hidden;
     }
     a{color:inherit}
     .wrap{
-      max-width: 980px;
+      max-width: 1020px;
       margin: 0 auto;
       padding: 56px 20px 80px;
     }
@@ -50,33 +57,36 @@
       gap:16px;
       margin-bottom: 28px;
     }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+    .brand{display:flex;align-items:center;gap:12px;}
     .logo{
       width:40px;height:40px;border-radius:12px;
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       box-shadow: 0 10px 30px rgba(124,92,255,.22);
+      position:relative;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-18px;
+      background: radial-gradient(circle, rgba(124,92,255,.18), transparent 60%);
+      filter: blur(10px);
+      z-index:-1;
     }
     .brand h1{
-      font-size: 22px;
-      margin:0;
-      letter-spacing:.02em;
+      font-size: 22px;margin:0;letter-spacing:.08em;
     }
     .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 8px 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
+      display:inline-flex;align-items:center;gap:8px;
+      padding: 8px 12px;border: 1px solid var(--line);
+      border-radius: 999px;color: var(--muted);
       background: rgba(255,255,255,.03);
-      font-size: 12px;
-      white-space:nowrap;
+      font-size: 12px;white-space:nowrap;
     }
+    .badge .dot{
+      width:8px;height:8px;border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 20px rgba(41,211,255,.35);
+    }
+
     .hero{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -87,24 +97,40 @@
       .hero{grid-template-columns: 1fr;}
       header{flex-direction:column; align-items:flex-start;}
     }
+
     .card{
       background: rgba(17,21,34,.75);
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 22px;
       backdrop-filter: blur(10px);
     }
     .title{
-      font-size: 36px;
+      font-size: 38px;
       margin: 0 0 10px;
       letter-spacing: .01em;
+      line-height:1.12;
     }
     .sub{
       margin:0;
       color: var(--muted);
       font-size: 15px;
     }
+
+    .chips{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .chip{
+      font-size:12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+
     .points{
       margin-top:16px;
       display:grid;
@@ -117,36 +143,49 @@
       background: rgba(255,255,255,.03);
     }
     .point b{display:block; margin-bottom:4px}
+
     .cta{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+      display:flex; gap:10px; flex-wrap:wrap;
       margin-top: 18px;
     }
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 12px 14px;
-      border-radius: 12px;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding: 12px 14px;border-radius: 12px;
       border: 1px solid var(--line);
       background: rgba(255,255,255,.03);
       color: var(--text);
       text-decoration:none;
       font-weight: 600;
       font-size: 14px;
+      transition: transform .08s ease, border-color .2s ease, background .2s ease;
+      cursor:pointer;
     }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.16);}
     .btn.primary{
       border-color: rgba(124,92,255,.45);
       background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.7));
       color: #0b0d12;
     }
-    .small{
-      color: var(--muted);
-      font-size: 12px;
-      margin-top: 10px;
+
+    .small{color: var(--muted); font-size: 12px; margin-top: 10px;}
+
+    .hr{height:1px;background: var(--line); margin: 16px 0;}
+
+    details{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px 14px;
     }
+    details + details{margin-top:10px}
+    summary{
+      cursor:pointer;
+      font-weight:600;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .faq p{margin:8px 0 0; color: var(--muted); font-size:14px}
+
     footer{
       margin-top: 18px;
       color: var(--muted);
@@ -157,15 +196,53 @@
       flex-wrap:wrap;
       opacity:.95;
     }
-    .links{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
+    .links{display:flex;gap:14px;flex-wrap:wrap;}
+
+    /* モーダル */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:center; justify-content:center;
+      padding: 18px;
+      z-index: 50;
     }
-    .hr{
-      height:1px;
-      background: var(--line);
-      margin: 18px 0;
+    .modal{
+      width:min(560px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(17,21,34,.92);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      backdrop-filter: blur(12px);
+    }
+    .modal h3{margin:0 0 10px; font-size:16px;}
+    .row{display:grid; gap:10px; margin-top:10px;}
+    .field{
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      color: var(--text);
+      width:100%;
+      outline:none;
+      font-size:14px;
+    }
+    textarea.field{min-height:120px; resize:vertical;}
+    .modal-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(17,21,34,.92);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      display:none;
+      z-index: 60;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -177,7 +254,7 @@
         <div class="logo" aria-hidden="true"></div>
         <h1>MEMBER</h1>
       </div>
-      <div class="badge">審査制｜会員制ファンクラブ基盤</div>
+      <div class="badge"><span class="dot" aria-hidden="true"></span>審査制｜会員制ファンクラブ基盤</div>
     </header>
 
     <section class="hero">
@@ -189,9 +266,16 @@
           品質管理の観点から、当社基準による審査を通過した方のみを対象に提供しています。
         </p>
 
+        <div class="chips" aria-label="特徴">
+          <div class="chip">招待・審査制</div>
+          <div class="chip">会員管理</div>
+          <div class="chip">限定コンテンツ</div>
+          <div class="chip">サブスク運用</div>
+        </div>
+
         <div class="cta">
-          <!-- ここは後でStripeのリンクに差し替える -->
-          <a class="btn primary" href="/contact.html">お問い合わせ</a>
+          <!-- まずは mailto でOK。後でフォーム/Stripeに差し替え可 -->
+          <button class="btn primary" id="openContact">お問い合わせ</button>
           <a class="btn" href="/terms.html">利用規約</a>
           <a class="btn" href="/privacy.html">プライバシー</a>
         </div>
@@ -223,6 +307,24 @@
         </div>
 
         <div class="hr"></div>
+
+        <h3 style="margin:0 0 10px; font-size:16px;">よくある質問</h3>
+        <div class="faq" style="display:grid; gap:10px;">
+          <details>
+            <summary>審査はどのように行われますか？</summary>
+            <p>運用ポリシーに基づき、提供内容・運用体制・ガイドライン遵守状況などを確認します。</p>
+          </details>
+          <details>
+            <summary>どんなクリエイターが利用できますか？</summary>
+            <p>インフルエンサー／クリエイターの方を対象とし、当社基準の審査を通過した方に提供します。</p>
+          </details>
+          <details>
+            <summary>費用や提供条件を知りたい</summary>
+            <p>用途と運用想定により最適な提供条件が変わるため、お問い合わせで案内しています。</p>
+          </details>
+        </div>
+
+        <div class="hr"></div>
         <p class="small" style="margin:0;">
           運用ポリシーに基づき、提供可否の判断を行います。
         </p>
@@ -232,15 +334,110 @@
     <footer>
       <div>© <span id="y"></span> MEMBER</div>
       <div class="links">
-        <a href="/contact.html">お問い合わせ</a>
+        <a href="#" id="footerContact">お問い合わせ</a>
         <a href="/terms.html">利用規約</a>
         <a href="/privacy.html">プライバシー</a>
       </div>
     </footer>
   </div>
 
+  <!-- お問い合わせモーダル -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">お問い合わせ</h3>
+      <p class="sub" style="margin:0;">
+        申請・提携・提供条件など、用途を簡単に教えてください。
+      </p>
+
+      <div class="row">
+        <input class="field" id="name" placeholder="お名前（任意）" />
+        <input class="field" id="email" placeholder="返信先メール（任意）" />
+        <textarea class="field" id="message" placeholder="例：ファンクラブ開設の相談（想定媒体・提供内容・運用体制など）"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn primary" id="sendMail">メールを作成</button>
+        <button class="btn" id="copyText">内容をコピー</button>
+        <button class="btn" id="closeContact">閉じる</button>
+      </div>
+
+      <div class="small" style="margin-top:10px;">
+        ※ 送信ボタンはメールアプリを開きます（フォーム実装は後で追加できます）
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
   <script>
+    // 年
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const backdrop = document.getElementById("modalBackdrop");
+    const openBtn = document.getElementById("openContact");
+    const footerContact = document.getElementById("footerContact");
+    const closeBtn = document.getElementById("closeContact");
+    const sendMail = document.getElementById("sendMail");
+    const copyText = document.getElementById("copyText");
+    const toast = document.getElementById("toast");
+
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const msgEl = document.getElementById("message");
+
+    // ここだけ自分の問い合わせ先に変更（まずは仮でもOK）
+    const TO_EMAIL = "contact@fan-member.jp";
+
+    function openModal(){
+      backdrop.style.display = "flex";
+      backdrop.setAttribute("aria-hidden","false");
+      setTimeout(()=>msgEl.focus(), 50);
+    }
+    function closeModal(){
+      backdrop.style.display = "none";
+      backdrop.setAttribute("aria-hidden","true");
+    }
+    function showToast(text){
+      toast.textContent = text;
+      toast.style.display = "block";
+      clearTimeout(window.__t);
+      window.__t = setTimeout(()=> toast.style.display="none", 1600);
+    }
+
+    openBtn.addEventListener("click", openModal);
+    footerContact.addEventListener("click", (e)=>{ e.preventDefault(); openModal(); });
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closeModal(); });
+    window.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closeModal(); });
+
+    function buildBody(){
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const msg = msgEl.value.trim();
+
+      return [
+        "【お問い合わせ】MEMBER",
+        name ? `お名前：${name}` : "",
+        email ? `返信先：${email}` : "",
+        "",
+        msg || "（ご相談内容をご記入ください）",
+      ].filter(Boolean).join("\n");
+    }
+
+    sendMail.addEventListener("click", ()=>{
+      const subject = encodeURIComponent("【MEMBER】お問い合わせ");
+      const body = encodeURIComponent(buildBody());
+      location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    copyText.addEventListener("click", async ()=>{
+      try{
+        await navigator.clipboard.writeText(buildBody());
+        showToast("コピーした");
+      }catch(e){
+        showToast("コピー失敗（ブラウザ制限）");
+      }
+    });
   </script>
 </body>
 </html>
