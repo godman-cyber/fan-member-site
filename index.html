@@ -1,26 +1,246 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>メンバー｜会員制サービス</title>
-  <meta name="robots" content="noindex,nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>メンバー｜審査制ファンクラブ基盤</title>
+
+  <!-- 検索避け -->
+  <meta name="robots" content="noindex,nofollow" />
+
+  <!-- OGP（SNSで貼った時の見え方） -->
+  <meta property="og:title" content="メンバー｜審査制ファンクラブ基盤" />
+  <meta property="og:description" content="インフルエンサー・クリエイター向けの審査制会員サービス。限定コンテンツやコミュニティ提供のための基盤です。" />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --card:#111522;
+      --text:#e8eaf0;
+      --muted:#a8afc3;
+      --line:rgba(255,255,255,.08);
+      --accent:#7c5cff;
+      --accent2:#29d3ff;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial, "Noto Sans JP",
+                   "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(900px 500px at 90% 10%, rgba(41,211,255,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+    }
+    a{color:inherit}
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 56px 20px 80px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom: 28px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .logo{
+      width:40px;height:40px;border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 10px 30px rgba(124,92,255,.22);
+    }
+    .brand h1{
+      font-size: 22px;
+      margin:0;
+      letter-spacing:.02em;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.03);
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 860px){
+      .hero{grid-template-columns: 1fr;}
+      header{flex-direction:column; align-items:flex-start;}
+    }
+    .card{
+      background: rgba(17,21,34,.75);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+    .title{
+      font-size: 36px;
+      margin: 0 0 10px;
+      letter-spacing: .01em;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .points{
+      margin-top:16px;
+      display:grid;
+      gap:10px;
+    }
+    .point{
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .point b{display:block; margin-bottom:4px}
+    .cta{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 18px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn.primary{
+      border-color: rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.7));
+      color: #0b0d12;
+    }
+    .small{
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    footer{
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      opacity:.95;
+    }
+    .links{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .hr{
+      height:1px;
+      background: var(--line);
+      margin: 18px 0;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>メンバー</h1>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>メンバー</h1>
+      </div>
+      <div class="badge">審査制｜会員制ファンクラブ基盤</div>
+    </header>
 
-  <p>
-    当サービスは、審査制の会員制ファンクラブ基盤です。<br>
-    品質管理の観点から、当社基準による審査を通過したインフルエンサーのみを対象に提供しています。
-  </p>
+    <section class="hero">
+      <div class="card">
+        <h2 class="title">インフルエンサー向け<br>会員制サービス</h2>
+        <p class="sub">
+          当サービスは、インフルエンサー・クリエイターがファン向けに
+          <b>限定コンテンツ</b>や<b>コミュニティ</b>を提供するための会員制基盤です。<br>
+          品質管理の観点から、当社基準による審査を通過した方のみを対象に提供しています。
+        </p>
 
-  <p>
-    インフルエンサーやクリエイターが、<br>
-    ファン向けに限定コンテンツやコミュニティを提供するための<br>
-    会員制サービスです。
-  </p>
+        <div class="cta">
+          <!-- ここは後でStripeのリンクに差し替える -->
+          <a class="btn primary" href="/contact.html">お問い合わせ</a>
+          <a class="btn" href="/terms.html">利用規約</a>
+          <a class="btn" href="/privacy.html">プライバシー</a>
+        </div>
 
-  <p>
-    サービスの提供条件や詳細については、お問い合わせください。
-  </p>
+        <div class="small">
+          ※ 現在は招待・審査制での提供となります。提供条件や詳細はお問い合わせください。
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin:0 0 8px; font-size:16px;">提供内容（例）</h3>
+        <p class="sub" style="margin-bottom:14px;">
+          クリエイターの活動に合わせて、以下のような提供形態を想定しています。
+        </p>
+
+        <div class="points">
+          <div class="point">
+            <b>限定コンテンツ</b>
+            会員限定の投稿・画像・動画・ライブ配信 等
+          </div>
+          <div class="point">
+            <b>コミュニティ</b>
+            会員限定の交流・イベント・告知 等
+          </div>
+          <div class="point">
+            <b>会員管理</b>
+            サブスクリプション管理、提供範囲の整理 等
+          </div>
+        </div>
+
+        <div class="hr"></div>
+        <p class="small" style="margin:0;">
+          運用ポリシーに基づき、提供可否の判断を行います。
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> メンバー</div>
+      <div class="links">
+        <a href="/contact.html">お問い合わせ</a>
+        <a href="/terms.html">利用規約</a>
+        <a href="/privacy.html">プライバシー</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
